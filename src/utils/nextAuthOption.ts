@@ -8,14 +8,13 @@ import { connectDB } from "./db";
 
 export const authOptions: NextAuthOptions = {
 	pages: {
-		signIn: "/authentication/login",
+		signIn: "/login",
 		signOut: "/",
 	},
-
 	providers: [
 		GoogleProvider({
-			clientId: process.env.GOOGLE_ID as string,
-			clientSecret: process.env.GOOGLE_SECRET as string,
+			clientId: process.env.GOOGLE_ID,
+			clientSecret: process.env.GOOGLE_SECRET,
 		}),
 		CredentialsProvider({
 			id: "credentials",
@@ -30,39 +29,32 @@ export const authOptions: NextAuthOptions = {
 					type: "password",
 				},
 			},
-			async authorize(credentials, req) {
+			async authorize(credentials) {
 				await connectDB();
 
 				const email = credentials?.email;
 				const password = credentials?.password;
 
 				if (!email || !password) {
-					return null;
+					throw new Error("All fields is required!");
 				}
 
-				try {
-					const user = await User.findOne({ email: email });
+				const user = await User.findOne({ email: email });
 
-					if (user) {
-						const matched = await bcrypt.compare(password, user.password);
+				if (user) {
+					const matched = await bcrypt.compare(password, user.password);
 
-						if (matched) {
-							return {
-								id: user._id,
-								name: user.name,
-								email: user.email,
-							};
-						} else {
-							NextResponse.json(
-								{ message: "Wrong password" },
-								{ status: 404, statusText: "Wrong password" }
-							);
-							throw new Error("Wrong credentials");
-						}
+					if (matched) {
+						return {
+							id: user._id,
+							name: user.name,
+							email: user.email,
+						};
+					} else {
+						throw new Error("Wrong credentials!");
 					}
-				} catch (error: any) {
-					throw new Error(error.message);
 				}
+				throw new Error("User not found!");
 			},
 		}),
 	],

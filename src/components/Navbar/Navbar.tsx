@@ -63,7 +63,7 @@ const Navbar = () => {
 					Log out
 				</button>
 			) : (
-				<Link className="" href={"/authentication/login"}>
+				<Link className="" href={"/login"}>
 					Sign in
 				</Link>
 			)}

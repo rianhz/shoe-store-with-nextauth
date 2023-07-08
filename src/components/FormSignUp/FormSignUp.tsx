@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
-import styles from "./signup.module.css";
+import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { useFormik } from "formik";
 import { signUpValidationSchema } from "@/validations/signValidation";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { themeContext } from "@/context/ThemeProvider";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 interface IFormSignUp {
 	name: string;
@@ -26,6 +27,9 @@ const FormSignUp = () => {
 			},
 		});
 
+		console.log(actions);
+		console.log(res);
+
 		if (!res.ok) {
 			return toast.error(res.statusText, {
 				duration: 3000,
@@ -39,7 +43,7 @@ const FormSignUp = () => {
 		});
 
 		setTimeout(() => {
-			router.push("/authentication/login");
+			router.push("/login");
 		}, 1500);
 	};
 	const {
@@ -61,25 +65,40 @@ const FormSignUp = () => {
 		onSubmit,
 	});
 
+	const { theme } = useContext(themeContext);
+
 	return (
-		<>
-			<form className={styles.formContainer} onSubmit={handleSubmit}>
-				<h2>Sign Up</h2>
-				<div className={styles.inputGroup}>
+		<div
+			className={`h-screen flex justify-center items-center transition duration-500 ${
+				theme === "dark" && "dark"
+			}`}
+		>
+			<form
+				className="w-[350px] flex justify-start items-start gap-4 flex-col border-solid border-2 border-gray-300 rounded-md p-4"
+				onSubmit={handleSubmit}
+			>
+				<h1 className="text-[30px] w-full text-center uppercase font-semibold mb-5">
+					Sign Up
+				</h1>
+				<div className="w-full">
 					<input
 						type="text"
 						name="name"
 						placeholder="Your name"
 						onChange={handleChange}
 						value={values.name}
-						className={errors.name && touched.name ? "input-err" : ""}
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm  ${
+							errors.name && touched.name
+								? "border-solid border-2 border-red-500"
+								: "border-solid border-2 border-gray-300"
+						}`}
 						onBlur={handleBlur}
 					/>
 					{errors.name && touched.name && (
-						<span className={styles.errors}>{errors.name}</span>
+						<span className="text-xs text-red-500 ">{errors.name}</span>
 					)}
 				</div>
-				<div className={styles.inputGroup}>
+				<div className="w-full">
 					<input
 						type="text"
 						name="email"
@@ -87,13 +106,17 @@ const FormSignUp = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.email}
-						className={errors.email && touched.email ? "input-err" : ""}
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm ${
+							errors.email && touched.email
+								? "border-solid border-2 border-red-500"
+								: "border-solid border-2 border-gray-300"
+						}`}
 					/>
 					{errors.email && touched.email && (
-						<span className={styles.errors}>{errors.email}</span>
+						<span className="text-red-500 text-xs">{errors.email}</span>
 					)}
 				</div>
-				<div className={styles.inputGroup}>
+				<div className="w-full">
 					<input
 						type="password"
 						name="password"
@@ -101,13 +124,17 @@ const FormSignUp = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.password}
-						className={errors.password && touched.password ? "input-err" : ""}
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm ${
+							errors.password && touched.password
+								? "border-solid border-2 border-red-500"
+								: "border-solid border-2 border-gray-300"
+						}`}
 					/>
 					{errors.password && touched.password && (
-						<span className={styles.errors}>{errors.password}</span>
+						<span className="text-red-500 text-xs">{errors.password}</span>
 					)}
 				</div>
-				<div className={styles.inputGroup}>
+				<div className="w-full ">
 					<input
 						type="password"
 						name="confirmPassword"
@@ -115,25 +142,41 @@ const FormSignUp = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.confirmPassword}
-						className={
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm ${
 							errors.confirmPassword && touched.confirmPassword
-								? "input-err"
-								: ""
-						}
+								? "border-solid border-2 border-red-500"
+								: "border-solid border-2 border-gray-300"
+						}`}
 					/>
 					{errors.confirmPassword && touched.confirmPassword && (
-						<span className={styles.errors}>{errors.confirmPassword}</span>
+						<span className="text-red-500 text-xs">
+							{errors.confirmPassword}
+						</span>
 					)}
 				</div>
-				<p className={styles.linkedSign}>
+				<p className="w-full text-xs mt-1">
 					Already have account? Sign in
-					<Link href={"/authentication/login"}> here</Link>
+					<Link
+						href={"/authentication/login"}
+						className="underline lowercase text-blue-300"
+					>
+						{" "}
+						here
+					</Link>
 				</p>
-				<button type="submit" disabled={isSubmitting}>
-					Register
+				<button
+					type="submit"
+					disabled={isSubmitting}
+					className={`mt-3 flex justify-center items-center gap-2 w-full py-1 px-2 text-white uppercase rounded-md transition duration-500 ${
+						isSubmitting
+							? "disabled:opacity-50 bg-gray-200 text-black"
+							: "bg-sky-500 hover:bg-sky-600 "
+					}`}
+				>
+					{isSubmitting ? <LoadingSpinner /> : "Register"}
 				</button>
 			</form>
-		</>
+		</div>
 	);
 };
 

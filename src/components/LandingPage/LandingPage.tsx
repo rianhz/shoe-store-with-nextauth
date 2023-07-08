@@ -3,7 +3,6 @@ import { Poppins, Roboto } from "next/font/google";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { BsArrowRight } from "react-icons/bs";
-import "./landing.css";
 import { themeContext } from "@/context/ThemeProvider";
 
 const roboto = Roboto({ weight: "900", subsets: ["latin"] });
@@ -45,7 +44,7 @@ const LandingPage = () => {
 						facere cumque voluptatem corrupti suscipit
 					</p>
 					<Link
-						href={"/authentication"}
+						href={"/login"}
 						className="group uppercase mt-3 px-4 py-2 bg-sky-500 w-[160px] flex justify-center items-center rounded-lg font-semibold text-white gap-1 transition duration-500 hover:bg-sky-600"
 					>
 						Shop Now{" "}
