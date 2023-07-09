@@ -87,7 +87,7 @@ const FormSignUp = () => {
 						placeholder="Your name"
 						onChange={handleChange}
 						value={values.name}
-						className={`w-full block rounded-md outline-none px-2 py-1 text-sm  ${
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm text-black  ${
 							errors.name && touched.name
 								? "border-solid border-2 border-red-500"
 								: "border-solid border-2 border-gray-300"
@@ -106,7 +106,7 @@ const FormSignUp = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.email}
-						className={`w-full block rounded-md outline-none px-2 py-1 text-sm ${
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm text-black ${
 							errors.email && touched.email
 								? "border-solid border-2 border-red-500"
 								: "border-solid border-2 border-gray-300"
@@ -124,7 +124,7 @@ const FormSignUp = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.password}
-						className={`w-full block rounded-md outline-none px-2 py-1 text-sm ${
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm text-black ${
 							errors.password && touched.password
 								? "border-solid border-2 border-red-500"
 								: "border-solid border-2 border-gray-300"
@@ -142,7 +142,7 @@ const FormSignUp = () => {
 						onChange={handleChange}
 						onBlur={handleBlur}
 						value={values.confirmPassword}
-						className={`w-full block rounded-md outline-none px-2 py-1 text-sm ${
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm text-black ${
 							errors.confirmPassword && touched.confirmPassword
 								? "border-solid border-2 border-red-500"
 								: "border-solid border-2 border-gray-300"

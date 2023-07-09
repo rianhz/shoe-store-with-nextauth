@@ -18,14 +18,21 @@ a {
 	text-transform: uppercase;
 }
 
+/* a:hover {
+	border-bottom: 2px solid orange;
+} */
+
 a.active {
 	border-bottom: 2px solid orange;
-}
-a.disabled {
-	border-bottom: 2px solid transparent;
 }
 
 .dark {
 	background-color: black;
 	color: white;
+}
+
+.imgss {
+	width: 320px;
+	height: 320px;
+	border-radius: 50%;
 }

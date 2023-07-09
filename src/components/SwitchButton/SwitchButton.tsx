@@ -9,7 +9,7 @@ const SwitchButton: React.FC = () => {
 
 	return (
 		<div
-			className={`border-solid border-2 border-gray-400 px-2 py-1 flex justify-start items-center gap-2 transition duration-500 cursor-pointer relative rounded-lg ${
+			className={`border-solid border-2 border-gray-400 px-2 py-1 flex justify-start items-center gap-2 transition duration-500 cursor-pointer relative rounded-lg sm:mb-10 ${
 				theme === "light" ? "bg-black" : "bg-white "
 			}`}
 			onClick={() => setTheme((prev) => (prev === "light" ? "dark" : "light"))}

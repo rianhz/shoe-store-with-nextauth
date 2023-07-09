@@ -77,7 +77,7 @@ const FormSignIn = () => {
 						value={values.email}
 						onChange={handleChange}
 						onBlur={handleBlur}
-						className={`w-full block rounded-md outline-none px-2 py-1 text-sm  ${
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm text-black  ${
 							errors.email && touched.email
 								? "border-solid border-2 border-red-500"
 								: "border-solid border-2 border-gray-300"
@@ -96,7 +96,7 @@ const FormSignIn = () => {
 						value={values.password}
 						onChange={handleChange}
 						onBlur={handleBlur}
-						className={`w-full block rounded-md outline-none px-2 py-1 text-sm  ${
+						className={`w-full block rounded-md outline-none px-2 py-1 text-sm text-black  ${
 							errors.password && touched.password
 								? "border-solid border-2 border-red-500"
 								: "border-solid border-2 border-gray-300"

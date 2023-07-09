@@ -52,7 +52,11 @@ const LandingPage = () => {
 					</Link>
 				</div>
 				<div className="flex justify-center items-center right-content w-[700px] bg-transparent p-3 relative">
-					<img src={"/brand-landing.jpg"} alt="Shoes Market" className="z-20" />
+					<img
+						src={"/brand-landing.jpg"}
+						alt="Shoes Market"
+						className="imgss z-20"
+					/>
 					<div className="w-[325px] h-[325px] rounded-full z-10 bg-gray-400 border-solid border-2 border-gray-400 absolute"></div>
 					<div className="w-[335px] h-[335px] rounded-full z-0 bg-transparent shadow-3xl absolute"></div>
 				</div>

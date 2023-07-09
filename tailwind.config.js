@@ -7,6 +7,12 @@ module.exports = {
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	theme: {
+		screens: {
+			sm: { min: "300px", max: "480px" },
+			md: { min: "481px", max: "768px" },
+			lg: { min: "769px", max: "1200px" },
+			xxl: { min: "1201px", max: "2200px" },
+		},
 		extend: {
 			boxShadow: {
 				"3xl": "0px 3px 15px 2px rgba(0, 0, 0, 0.75)",
