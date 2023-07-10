@@ -17,6 +17,7 @@ interface IFormSignIn {
 
 const FormSignIn = () => {
 	const router = useRouter();
+
 	const onSubmit = async (values: IFormSignIn, actions: any) => {
 		const email = values.email;
 		const password = values.password;
@@ -110,7 +111,7 @@ const FormSignIn = () => {
 					Dont have any account? Register
 					<Link
 						href={"/register"}
-						className="underline lowercase text-blue-300"
+						className="underline lowercase text-blue-500"
 					>
 						{" "}
 						here
@@ -127,7 +128,7 @@ const FormSignIn = () => {
 				>
 					{isSubmitting ? <LoadingSpinner /> : "Login"}
 				</button>
-				<p className="text-center w-full mt-10 mb-3 font-xs text-gray-500">
+				<p className="text-center relative w-full mt-10 mb-3 font-xs text-gray-500 before:content-[''] before:bg-gray-300 before:absolute before:left-0 before:top-[50%] before:h-[2px] before:w-[100px] after:content-[''] after:bg-gray-300 after:absolute after:right-0 after:top-[50%] after:h-[2px] after:w-[100px]">
 					or login with
 				</p>
 				<div className="w-full flex justify-center items-center gap-5">

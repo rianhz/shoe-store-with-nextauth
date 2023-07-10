@@ -27,9 +27,6 @@ const FormSignUp = () => {
 			},
 		});
 
-		console.log(actions);
-		console.log(res);
-
 		if (!res.ok) {
 			return toast.error(res.statusText, {
 				duration: 3000,
@@ -158,7 +155,7 @@ const FormSignUp = () => {
 					Already have account? Sign in
 					<Link
 						href={"/authentication/login"}
-						className="underline lowercase text-blue-300"
+						className="underline lowercase text-blue-500"
 					>
 						{" "}
 						here

@@ -11,7 +11,7 @@ const Order = () => {
 		if (status === "unauthenticated") {
 			router.push("/login");
 		}
-	}, [status]);
+	}, []);
 	return <div>Order</div>;
 };
 
