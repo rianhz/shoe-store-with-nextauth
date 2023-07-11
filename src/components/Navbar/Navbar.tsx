@@ -16,6 +16,7 @@ const Navbar = () => {
 
 	const signOutUser = async () => {
 		await signOut();
+
 		setSideMenu((prev) => !prev);
 	};
 
@@ -30,7 +31,7 @@ const Navbar = () => {
 					style={{
 						borderRadius: "50%",
 					}}
-					priority
+					loading="lazy"
 				/>
 			</Link>
 
