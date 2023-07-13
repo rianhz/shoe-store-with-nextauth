@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
@@ -25,8 +24,8 @@ const Product = () => {
 			}`}
 		>
 			<AsideNav />
-			<div className="bg-transparent text-black grow">
-				<h1>asd</h1>
+			<div className="p-3 flex justify-center items-center min-h-screen grow">
+				<h1>Products</h1>
 			</div>
 		</div>
 	);
