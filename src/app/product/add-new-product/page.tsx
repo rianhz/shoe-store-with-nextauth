@@ -11,6 +11,7 @@ const page = () => {
 		flex: 1,
 		flexDirection: "column" as "column",
 		alignItems: "center",
+		justifyContent: "center",
 		padding: "20px",
 		borderWidth: 2,
 		borderRadius: 2,
@@ -35,29 +36,51 @@ const page = () => {
 	};
 
 	const {
-		getRootProps,
-		getInputProps,
-		isDragActive,
-		isFocused,
-		isDragAccept,
-		isDragReject,
+		getRootProps: getBannerProps,
+		getInputProps: GetBannerInputProps,
+
+		isFocused: isFocusedBanner,
+		isDragAccept: isDragAcceptBanner,
+		isDragReject: isDragRejectBanner,
 	} = useDropzone({
 		accept: {
 			"image/*": [],
 		},
+		onDrop: (files) => console.log(files),
+	});
+	const {
+		getRootProps: getSlidesProps,
+		getInputProps: getSlidesInputProps,
+
+		isFocused: isFocusedSlides,
+		isDragAccept: isDragAcceptSlides,
+		isDragReject: isDragRejectSlides,
+	} = useDropzone({
+		accept: {
+			"image/*": [],
+		},
+		onDrop: (files) => console.log(files),
 	});
 
-	console.log(getInputProps());
-
-	const style = useMemo(
+	const styleBanner = useMemo(
 		() => ({
 			...baseStyle,
-			...(isFocused ? focusedStyle : {}),
-			...(isDragAccept ? acceptStyle : {}),
-			...(isDragReject ? rejectStyle : {}),
+			...(isFocusedBanner ? focusedStyle : {}),
+			...(isDragAcceptBanner ? acceptStyle : {}),
+			...(isDragRejectBanner ? rejectStyle : {}),
 		}),
-		[isFocused, isDragAccept, isDragReject]
+		[isFocusedBanner, isDragAcceptBanner, isDragRejectBanner]
 	);
+	const styleSlides = useMemo(
+		() => ({
+			...baseStyle,
+			...(isFocusedSlides ? focusedStyle : {}),
+			...(isDragAcceptSlides ? acceptStyle : {}),
+			...(isDragRejectSlides ? rejectStyle : {}),
+		}),
+		[isFocusedSlides, isDragAcceptSlides, isDragRejectBanner]
+	);
+
 	const { theme } = useContext(themeContext);
 
 	return (
@@ -66,37 +89,64 @@ const page = () => {
 				theme === "light" ? "bg-gray-100" : "dark"
 			}`}
 		>
-			<div className="p-3 flex justify-center items-center min-h-screen grow">
-				<form className="w-[400px] bg-gray-100">
-					<h1>Add New Product</h1>
+			<div className="p-3 flex justify-center items-center min-h-screen w-full">
+				<form
+					className={`w-[400px] bg-gray-300 rounded-lg px-4 py-10 text-black`}
+				>
+					<h1 className="text-[24px] font-bold uppercase text-center">
+						New Product
+					</h1>
 					<div className="w-full mt-2">
-						<label htmlFor="product-name">Product Name</label>
-						<input type="text" name="product-name" id="product-name" />
+						<label htmlFor="product" className="font-semibold">
+							Product
+						</label>
+						<input
+							type="text"
+							name="product"
+							id="product"
+							className="w-full mt-1 rounded-md px-2 py-1 outline-none"
+						/>
 					</div>
 					<div className="w-full mt-2">
-						<label htmlFor="product-name">Product Name</label>
-						<input type="text" name="product-name" id="product-name" />
+						<label htmlFor="price " className="font-semibold">
+							Price
+						</label>
+						<input
+							type="text"
+							name="price"
+							id="price"
+							className="w-full mt-1 rounded-md px-2 py-1 outline-none"
+						/>
 					</div>
-					<div className="w-full mt-2">
-						<label htmlFor="product-banner">Product Banner</label>
-						<div {...getRootProps({ style })}>
-							<input type="file" {...getInputProps()} />
+					<div className="w-full mt-2 dropzone">
+						<label htmlFor="banner" className="font-semibold">
+							Banner
+						</label>
+						<div {...getBannerProps({ styleBanner })}>
+							<input type="file" {...GetBannerInputProps()} />
 							<AiFillFolderAdd />
-							<p>Drag 'n' drop some files here</p>
+							<p className="text-center">Drag 'n' drop product banner</p>
 						</div>
 					</div>
-					<div className="w-full mt-2">
-						<label htmlFor="product-name">Product Name</label>
-						<input type="text" name="product-name" id="product-name" />
-					</div>
-					<div className="w-full mt-2">
-						<label htmlFor="product-slides">Product Slides</label>
-						<div {...getRootProps({ style })}>
-							<input type="file" {...getInputProps()} />
+
+					<div className="w-full mt-2 dropzone">
+						<label htmlFor="slides" className="font-semibold">
+							Slides
+						</label>
+						<div {...getSlidesProps({ styleSlides })}>
+							<input type="file" {...getSlidesInputProps()} />
 							<AiFillFolderAdd />
-							<p>Drag 'n' drop some files here</p>
+							<p className="text-center">
+								Drop your highlight images, max 5 images
+							</p>
 						</div>
 					</div>
+					<button
+						type="submit"
+						className="uppercase font-semibold text-center bg-sky-500 text-white rounded-lg w-full mt-4 p-2 transition duration-500 hover:bg-sky-400"
+					>
+						Add
+					</button>
 				</form>
 			</div>
 		</div>
