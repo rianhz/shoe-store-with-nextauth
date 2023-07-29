@@ -55,7 +55,7 @@ const Navbar = () => {
 				<Link
 					href={"/product"}
 					className={`pb-[4px] border-solid border-b-2 border-transparent hover:border-orange-300 transition duration-500 ${
-						location === "/products" ? "active" : ""
+						location === "/product" ? "active" : ""
 					}`}
 				>
 					products

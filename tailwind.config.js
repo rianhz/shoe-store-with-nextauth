@@ -28,6 +28,7 @@ module.exports = {
 				"gradient-mid": "rgba(226, 200, 49, 0.8241421568627451)",
 				"gradient-bottom": "rgb(206, 202, 230)",
 				"gray-thin": "rgba(197, 192, 192, 0.4)",
+				"my-orange": "#ffa500",
 			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

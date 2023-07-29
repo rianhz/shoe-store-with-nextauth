@@ -17,7 +17,7 @@ const page = () => {
 		borderRadius: 2,
 		borderColor: "#eeeeee",
 		borderStyle: "dashed",
-		backgroundColor: "#fafafe",
+		backgroundColor: "rgb(243 244 246)",
 		color: "#bdbdbd",
 		outline: "none",
 		transition: "border .24s ease-in-out",
@@ -51,7 +51,6 @@ const page = () => {
 	const {
 		getRootProps: getSlidesProps,
 		getInputProps: getSlidesInputProps,
-
 		isFocused: isFocusedSlides,
 		isDragAccept: isDragAcceptSlides,
 		isDragReject: isDragRejectSlides,
@@ -62,16 +61,7 @@ const page = () => {
 		onDrop: (files) => console.log(files),
 	});
 
-	const styleBanner = useMemo(
-		() => ({
-			...baseStyle,
-			...(isFocusedBanner ? focusedStyle : {}),
-			...(isDragAcceptBanner ? acceptStyle : {}),
-			...(isDragRejectBanner ? rejectStyle : {}),
-		}),
-		[isFocusedBanner, isDragAcceptBanner, isDragRejectBanner]
-	);
-	const styleSlides = useMemo(
+	const style = useMemo(
 		() => ({
 			...baseStyle,
 			...(isFocusedSlides ? focusedStyle : {}),
@@ -90,9 +80,7 @@ const page = () => {
 			}`}
 		>
 			<div className="p-3 flex justify-center items-center min-h-screen w-full">
-				<form
-					className={`w-[400px] bg-gray-300 rounded-lg px-4 py-10 text-black`}
-				>
+				<form className={`w-[400px] bg-white rounded-lg px-4 py-10 text-black`}>
 					<h1 className="text-[24px] font-bold uppercase text-center">
 						New Product
 					</h1>
@@ -104,7 +92,7 @@ const page = () => {
 							type="text"
 							name="product"
 							id="product"
-							className="w-full mt-1 rounded-md px-2 py-1 outline-none"
+							className="bg-gray-100 w-full mt-1 rounded-md px-2 py-1 outline-none"
 						/>
 					</div>
 					<div className="w-full mt-2">
@@ -115,28 +103,28 @@ const page = () => {
 							type="text"
 							name="price"
 							id="price"
-							className="w-full mt-1 rounded-md px-2 py-1 outline-none"
+							className="bg-gray-100 w-full mt-1 rounded-md px-2 py-1 outline-none"
 						/>
 					</div>
-					<div className="w-full mt-2 dropzone">
+					<div className="w-full mt-2 ">
 						<label htmlFor="banner" className="font-semibold">
 							Banner
 						</label>
-						<div {...getBannerProps({ styleBanner })}>
+						<div {...getBannerProps({ style })}>
 							<input type="file" {...GetBannerInputProps()} />
-							<AiFillFolderAdd />
-							<p className="text-center">Drag 'n' drop product banner</p>
+							<AiFillFolderAdd className="mx-auto fill-current text-gray-500" />
+							<p className="text-center text-gray-500">Drop product banner</p>
 						</div>
 					</div>
 
-					<div className="w-full mt-2 dropzone">
+					<div className="w-full mt-2 ">
 						<label htmlFor="slides" className="font-semibold">
-							Slides
+							Preview
 						</label>
-						<div {...getSlidesProps({ styleSlides })}>
+						<div {...getSlidesProps({ style })}>
 							<input type="file" {...getSlidesInputProps()} />
-							<AiFillFolderAdd />
-							<p className="text-center">
+							<AiFillFolderAdd className="mx-auto fill-current text-gray-500" />
+							<p className="text-center text-gray-500">
 								Drop your highlight images, max 5 images
 							</p>
 						</div>

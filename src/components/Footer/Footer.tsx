@@ -6,7 +6,7 @@ const Footer = () => {
 	const { theme } = useContext(themeContext);
 	return (
 		<footer
-			className={`w-full h-[40px] mt-[50px] flex justify-center items-center transition duration-500 ${
+			className={`w-full h-[70px] flex justify-center items-center transition duration-500 ${
 				theme === "dark" ? "dark text-light" : "bg-light"
 			}`}
 		>
